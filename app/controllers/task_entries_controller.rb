@@ -1,6 +1,7 @@
 class TaskEntriesController < ApplicationController
   before_action :set_task_entry, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:index, :show]
+  
   # GET /task_entries
   # GET /task_entries.json
   def index
