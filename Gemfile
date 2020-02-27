@@ -11,6 +11,9 @@ gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 # Used for user functionality
 gem 'devise'
 
+gem 'bootstrap'
+gem 'jquery-rails'
+
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
