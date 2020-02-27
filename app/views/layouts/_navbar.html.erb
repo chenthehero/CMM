@@ -4,46 +4,46 @@
 
 <nav class = "navbar navbar-expand-md navbar-dark bg-dark">
       
-      <!-- Left side home page/logo link -->
-      <div class= "navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-        <ul class = "navbar-nav mr-auto">
-          <li class = "nav-item active">
-            <%= link_to "Home", root_path, :class => "nav-link" %>
-          </li>
-        </ul>
-      </div>
+  <!-- Left side home page/logo link -->
+  <div class= "navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+    <ul class = "navbar-nav mr-auto">
+      <li class = "nav-item active">
+        <%= link_to "Home", root_path, :class => "nav-link" %>
+      </li>
+    </ul>
+  </div>
 
-      <!-- Right side links -->
-      <div class = "navbar-collapse collapse w-100 order-3 dual-collapse2">
-        <ul class = "navbar-nav ml-auto">
+  <!-- Right side links -->
+  <div class = "navbar-collapse collapse w-100 order-3 dual-collapse2">
+    <ul class = "navbar-nav ml-auto">
 
-          <!-- Logged in can see everything -->
-    <% if user_signed_in? %>
-          <li class = "nav-item active">
-            <%= link_to "Customers", customers_path, :class => "nav-link" %>
-          </li>
-          <li class = "nav-item active">
-            <%= link_to "Projects", projects_path, :class => "nav-link" %>
-          </li>
-          <li class = "nav-item active">
-            <%= link_to "Tasks", tasks_path, :class => "nav-link" %>
-          </li>
-          <li class = "nav-item active">
-            <%= link_to "Task Entries", task_entries_path, :class => "nav-link" %>
-          </li>
-          <li class = "nav-item active">
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, :class => "nav-link" %>
-          </li>
-    <% else %>
-          <!-- Not logged in can only sign in -->
-          <li class = "nav-item active">
-            <%= link_to "Register", new_user_registration_path, :class => "nav-link" %>
-          </li>
-          <li class = "nav-item active">
-            <%= link_to "Sign In", new_user_session_path, :class => "nav-link" %>
-          </li>
-    <% end %> 
+      <!-- Logged in can see everything -->
+<% if user_signed_in? %>
+      <li class = "nav-item active">
+        <%= link_to "Customers", customers_path, :class => "nav-link" %>
+      </li>
+      <li class = "nav-item active">
+        <%= link_to "Projects", projects_path, :class => "nav-link" %>
+      </li>
+      <li class = "nav-item active">
+        <%= link_to "Tasks", tasks_path, :class => "nav-link" %>
+      </li>
+      <li class = "nav-item active">
+        <%= link_to "Task Entries", task_entries_path, :class => "nav-link" %>
+      </li>
+      <li class = "nav-item active">
+        <%= link_to "Log out", destroy_user_session_path, method: :delete, :class => "nav-link" %>
+      </li>
+<% else %>
+      <!-- Not logged in can only sign in -->
+      <li class = "nav-item active">
+        <%= link_to "Register", new_user_registration_path, :class => "nav-link" %>
+      </li>
+      <li class = "nav-item active">
+        <%= link_to "Sign In", new_user_session_path, :class => "nav-link" %>
+      </li>
+<% end %> 
 
-        </ul>
-      </div> 
-    </nav>
+    </ul>
+  </div> 
+</nav>
