@@ -11,27 +11,29 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :task_id %>
-    <%= form.text_field :task_id %>
+    <%= form.text_field :task_id, :class => "form-control col-md-6" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :duration %>
-    <%= form.number_field :duration %>
+    <%= form.number_field :duration, :class => "form-control col-md-6" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :note %>
-    <%= form.text_area :note %>
+    <%= form.text_area :note, :class => "form-control col-md-6" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :start_time %>
-    <%= form.datetime_select :start_time %>
+    <%= form.datetime_select :start_time, :class => "form-control col-md-6" %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
+
+  <hr/>
 <% end %>
