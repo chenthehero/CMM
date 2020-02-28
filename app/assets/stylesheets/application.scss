@@ -14,4 +14,20 @@
 
 /* Custom boostrap variables must be set ot imported before boostrap 
 */
+
+$theme-colors: (
+  "primary": #7693BE,
+  "secondary": #CACACA,
+  "success": #015668,
+  "info": #0F81C7,
+  "warning": #0DE2EA,
+  "danger": #06648C,
+  "light": #ececec,
+  "dark": #222222
+);
+
+$table-dark-color: #FFFFFF;
+$table-dark-bg: #1A5579;
+$table-dark-border-color: #1A5579;
+
 @import "bootstrap";
