@@ -19,18 +19,18 @@
 
       <!-- Logged in can see everything -->
 <% if user_signed_in? %>
-      <li class = "nav-item active">
-        <%= link_to "Customers", customers_path, :class => "nav-link" %>
+      <li class="nav-item active dropdown">
+        <%= link_to "Pages", root_path, :class => "nav-link", 'data-toggle'=>"dropdown" %>
+
+        <ul class="dropdown-menu">
+          <li><%= link_to "Customers", customers_path, :class => "nav-link" %></li>
+          <li><%= link_to "Projects", projects_path, :class => "nav-link" %></li>
+          <li><%= link_to "Tasks", tasks_path, :class => "nav-link" %></li>
+          <li class>
+            <%= link_to "Task Entries", task_entries_path, :class => "nav-link" %></li>
+        </ul>
       </li>
-      <li class = "nav-item active">
-        <%= link_to "Projects", projects_path, :class => "nav-link" %>
-      </li>
-      <li class = "nav-item active">
-        <%= link_to "Tasks", tasks_path, :class => "nav-link" %>
-      </li>
-      <li class = "nav-item active">
-        <%= link_to "Task Entries", task_entries_path, :class => "nav-link" %>
-      </li>
+
       <li class = "nav-item active">
         <%= link_to "Account", edit_user_registration_path, :class => "nav-link" %>
       </li>
