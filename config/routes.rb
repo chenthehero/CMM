@@ -6,5 +6,8 @@ Rails.application.routes.draw do
   resources :customers
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  root 'projects#index'
+  patch ':id/start_time', to: 'task_entries#start_time', :as => 'start_time'
+  patch ':id/stop_time', to: 'task_entries#stop_time', :as => 'stop_time'
+
+  root 'task_entries#index'
 end

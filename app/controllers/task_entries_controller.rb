@@ -1,5 +1,5 @@
 class TaskEntriesController < ApplicationController
-  before_action :set_task_entry, only: [:show, :edit, :update, :destroy]
+  before_action :set_task_entry, only: [:show, :edit, :update, :destroy, :start_time, :stop_time]
   before_action :authenticate_user!, except: [:index, :show]
   
   # GET /task_entries
@@ -20,6 +20,35 @@ class TaskEntriesController < ApplicationController
 
   # GET /task_entries/1/edit
   def edit
+  end
+
+
+  def start_time
+    respond_to do |format|
+      if @task_entry.update(start_time: Time.zone.now)
+        format.html { redirect_to task_entries_path, notice: 'Timer was started.'}
+      else
+        format.html { redirect_to task_entries_path, notice: 'Timer failed to start.'}
+      end
+    end  
+  end
+
+  def stop_time
+    respond_to do |format|
+
+      prev_duration = @task_entry.duration
+      if prev_duration.nil?
+        prev_duration = 0
+      end
+
+      duration = ((Time.zone.now - @task_entry.start_time) / 60).to_i
+
+      if @task_entry.update(start_time: nil, duration: prev_duration + duration)
+        format.html { redirect_to task_entries_path, notice: 'Timer was stopped.'}
+      else
+        format.html { redirect_to task_entries_path, notice: 'Timer failed to stop.'}
+      end
+    end  
   end
 
   # POST /task_entries

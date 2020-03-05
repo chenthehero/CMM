@@ -9,6 +9,7 @@
       <th scope = "col">Duration</th>
       <th scope = "col">Note</th>
       <th scope = "col">Start time</th>
+      <th scope = "col">Timer
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,6 +21,21 @@
         <td><%= task_entry.duration %></td>
         <td><%= task_entry.note %></td>
         <td><%= task_entry.start_time %></td>
+
+        <td>
+
+          <% path = task_entry.start_time.nil? ? start_time_path(task_entry.id) : stop_time_path(task_entry.id) %>
+          <% button_text = task_entry.start_time.nil? ? 'Start' : 'Stop' %>
+          <%= form_for(task_entry, url: path, local: true) do |form| %>
+            <div class="actions">
+              <%= form.submit button_text %>
+            </div>
+          <% end %>
+        </td>
+        
+
+
+
         <td><%= link_to 'Show', task_entry %></td>
         <td><%= link_to 'Edit', edit_task_entry_path(task_entry) %></td>
         <td><%= link_to 'Destroy', task_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>

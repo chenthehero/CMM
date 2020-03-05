@@ -1,11 +1,18 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :perform_authorization
+
+  # check to make sure that the user can only see his own tasks
+  private
+    def perform_authorization
+      @task 
+    end
 
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+    @tasks = Task.where(:user_id => current_user)
   end
 
   # GET /tasks/1
