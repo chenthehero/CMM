@@ -1,11 +1,17 @@
 class TaskEntriesController < ApplicationController
   before_action :set_task_entry, only: [:show, :edit, :update, :destroy, :start_time, :stop_time]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :perform_authorization, only: [:show, :edit, :update, :destroy]
   
   # GET /task_entries
   # GET /task_entries.json
-  def index
-    @task_entries = TaskEntry.all
+  def index  
+    @tasks = Task.all
+    if current_user != nil
+      @task_entries = TaskEntry.joins(:task).where("tasks.user_id = ?", current_user.id)
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   # GET /task_entries/1
@@ -100,5 +106,12 @@ class TaskEntriesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def task_entry_params
       params.require(:task_entry).permit(:task_id, :duration, :note, :start_time)
+    end
+
+    # check to make sure that the user can only see his own tasks_entries
+    def perform_authorization
+      if @task_entry.task.user_id != current_user.id
+        redirect_to task_entries_path, notice: 'Not Authorized to View!'
+      end
     end
 end

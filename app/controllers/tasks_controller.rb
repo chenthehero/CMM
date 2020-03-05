@@ -1,18 +1,13 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :perform_authorization
-
-  # check to make sure that the user can only see his own tasks
-  private
-    def perform_authorization
-      @task 
-    end
-
+  before_action :perform_authorization, only: [:show, :edit, :update, :destroy]
+  
   # GET /tasks
   # GET /tasks.json
   def index
     @tasks = Task.where(:user_id => current_user)
+    @projects = Project.all
   end
 
   # GET /tasks/1
@@ -78,5 +73,12 @@ class TasksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def task_params
       params.require(:task).permit(:project_id, :user_id, :task_name)
+    end
+
+    # check to make sure that the user can only see his own tasks
+    def perform_authorization
+      if @task.user_id != current_user.id
+        redirect_to tasks_path, notice: 'Not Authorized to View!'
+      end
     end
 end

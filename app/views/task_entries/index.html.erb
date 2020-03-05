@@ -5,6 +5,7 @@
 <table class = "table table-striped">
   <thead class = "thead-dark">
     <tr>
+      <th scope = "col">Task ID</th>
       <th scope = "col">Task</th>
       <th scope = "col">Duration</th>
       <th scope = "col">Note</th>
@@ -15,32 +16,40 @@
   </thead>
 
   <tbody>
-    <% @task_entries.each do |task_entry| %>
-      <tr>
-        <td><%= task_entry.task_id %></td>
-        <td><%= task_entry.duration %></td>
-        <td><%= task_entry.note %></td>
-        <td><%= task_entry.start_time %></td>
+    <% if @task_entries != nil %>
+      <% @task_entries.each do |task_entry| %>
+        <tr>
+          <td><%= task_entry.id %></td>
 
-        <td>
+          <% task = @tasks.find(task_entry.task_id)%>
+          <td><%= task.task_name %></td>
 
-          <% path = task_entry.start_time.nil? ? start_time_path(task_entry.id) : stop_time_path(task_entry.id) %>
-          <% button_text = task_entry.start_time.nil? ? 'Start' : 'Stop' %>
-          <%= form_for(task_entry, url: path, local: true) do |form| %>
-            <div class="actions">
-              <%= form.submit button_text %>
-            </div>
-          <% end %>
-        </td>
-        
+          <td><%= task_entry.duration %></td>
+          <td><%= task_entry.note %></td>
+          <td><%= task_entry.start_time %></td>
+
+          <td>
+
+            <% path = task_entry.start_time.nil? ? start_time_path(task_entry.id) : stop_time_path(task_entry.id) %>
+            <% button_text = task_entry.start_time.nil? ? 'Start' : 'Stop' %>
+            <%= form_for(task_entry, url: path, local: true) do |form| %>
+              <div class="actions">
+                <%= form.submit button_text %>
+              </div>
+            <% end %>
+          </td>
+          
 
 
 
-        <td><%= link_to 'Show', task_entry %></td>
-        <td><%= link_to 'Edit', edit_task_entry_path(task_entry) %></td>
-        <td><%= link_to 'Destroy', task_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+          <td><%= link_to 'Show', task_entry %></td>
+          <td><%= link_to 'Edit', edit_task_entry_path(task_entry) %></td>
+          <td><%= link_to 'Destroy', task_entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+
     <% end %>
+
   </tbody>
 </table>
 
